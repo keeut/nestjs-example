@@ -20,7 +20,6 @@ export class TransformResInterceptor<T>
     context: ExecutionContext,
     next: CallHandler,
   ): Observable<Response<T>> {
-    // get response status
     const response = context.switchToHttp().getResponse();
     return next.handle().pipe(
       map((data) => ({

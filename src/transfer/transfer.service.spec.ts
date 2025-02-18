@@ -136,7 +136,7 @@ describe('TransferService', () => {
       const transferRequestDto = { quoteId: 'quote-id' };
       const userIdx = 1;
       const mockQuote = { userIdx: 2, expireTime: new Date() }; // mockQuote with mismatched userIdx
-      quoteRepositoryMock.findOne.mockResolvedValue(mockQuote); // Mock the quote repository to return mockQuote
+      quoteRepositoryMock.findOne.mockResolvedValue(mockQuote);
 
       await expect(
         service.requestTransfer(

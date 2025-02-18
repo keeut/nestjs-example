@@ -5,7 +5,6 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { ConflictException } from '@nestjs/common';
 import { userIdType } from './entities/user-constant';
 
-// Mock the UserService class
 const mockUserService = {
   findOne: jest.fn(),
   create: jest.fn(),

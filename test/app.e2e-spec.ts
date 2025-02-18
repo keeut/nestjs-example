@@ -35,7 +35,6 @@ describe('AppController (e2e)', () => {
     await app.close();
   });
 
-  // signup API
   describe('POST /user/signup', () => {
     it('should sign up a new user', async () => {
       const response = await request(app.getHttpServer())
@@ -52,7 +51,6 @@ describe('AppController (e2e)', () => {
       expect(response.body.resultMsg).toBe('OK');
     });
     it('should return conflict error when signup same user', async () => {
-      // First signup
       await request(app.getHttpServer())
         .post('/user/signup')
         .send({
@@ -64,7 +62,6 @@ describe('AppController (e2e)', () => {
         })
         .expect(200);
 
-      // Attempt to sign up again with the same email
       const response = await request(app.getHttpServer())
         .post('/user/signup')
         .send({
@@ -74,10 +71,10 @@ describe('AppController (e2e)', () => {
           idType: 'REG_NO',
           idValue: '765432-7654321',
         })
-        .expect(409); // Conflict error (HTTP 409)
+        .expect(409); 
 
       expect(response.body.resultCode).toBe(HttpStatus.CONFLICT);
-      expect(response.body.resultMsg).toBe('USER_ALREADY_EXISTS'); // Assume error message
+      expect(response.body.resultMsg).toBe('USER_ALREADY_EXISTS'); 
     });
 
     it('password and idValue should be encrypted when save in db', async () => {
@@ -122,7 +119,7 @@ describe('AppController (e2e)', () => {
           userId: 'testuser@example.com',
           password: 'securePassword123',
           name: 'Test User',
-          idType: 'INVALID_ID_TYPE', // Invalid idType
+          idType: 'INVALID_ID_TYPE',
           idValue: '123456-1234567',
         })
         .expect(400);

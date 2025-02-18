@@ -2,7 +2,6 @@ import { ConfigService } from '@nestjs/config';
 import { currency } from '../transfer/entities/transfer-constant';
 import { userIdType } from '../user/entities/user-constant';
 
-// Transfer Fees Configuration
 export const getTransferFeesConfig = (configService: ConfigService) => ({
   USD_UNDER_100: {
     fixed: Number(configService.get<number>('FEE_USD_UNDER_100_FIXED', 1000)),
@@ -20,7 +19,6 @@ export const getTransferFeesConfig = (configService: ConfigService) => ({
   },
 });
 
-// Other Configurations
 export const getTransferConfigs = (configService: ConfigService) => ({
   MAX_DECIMAL_DIGITS: Number(
     configService.get<number>('MAX_DECIMAL_DIGITS', 12),

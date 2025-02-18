@@ -78,7 +78,6 @@ describe('UserService', () => {
 
       const result = await userService.create(createUserDto);
 
-      // Assert that bcrypt.hashSync was called with the right arguments
       expect(hashSpy).toHaveBeenCalledWith(createUserDto.password, 10);
       expect(hashSpy).toHaveBeenCalledWith(createUserDto.idValue, 10);
       expect(userRepository.save).toHaveBeenCalledWith(saveUser);
@@ -120,7 +119,7 @@ describe('UserService', () => {
       const userId = 'unexisttestuser@example.com';
       const password = 'Test1234!';
 
-      userRepository.findOne = jest.fn().mockResolvedValue(null); // Simulate user not found
+      userRepository.findOne = jest.fn().mockResolvedValue(null);  
 
       await expect(userService.signIn(userId, password)).rejects.toThrowError(
         UnauthorizedException,

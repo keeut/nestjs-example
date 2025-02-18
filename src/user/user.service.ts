@@ -39,8 +39,6 @@ export class UserService {
       throw new UnauthorizedException('이메일 또는 비밀번호를 확인해 주세요.');
     }
 
-    // const payload = { sub: user.userId };
-
     const payload: Record<string, any> = {};
     getJwtConfig(this.configService).jwtContents.forEach((item) => {
       payload[item] = user[item];
